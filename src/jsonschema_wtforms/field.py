@@ -3,9 +3,16 @@ import wtforms.form
 import wtforms.fields
 from functools import partial
 from typing import Optional, Dict, ClassVar, Type, Iterable
+
+from wtforms.widgets import ColorInput
+
 from jsonschema_wtforms._fields import MultiCheckboxField
 from jsonschema_wtforms.validators import NumberRange
 from jsonschema_wtforms.converter import JSONFieldParameters, converter
+
+
+class SimpleColorField(wtforms.fields.StringField):
+    widget = ColorInput()
 
 
 string_formats = {
@@ -21,7 +28,9 @@ string_formats = {
     'uri': wtforms.fields.URLField,
     'ipvanyaddress': wtforms.fields.StringField,
     'ipvanyinterface': wtforms.fields.StringField,
-    'ipvanynetwork': wtforms.fields.StringField
+    'ipvanynetwork': wtforms.fields.StringField,
+    'color': SimpleColorField,
+    'name-email': wtforms.fields.StringField
 }
 
 

@@ -5,7 +5,7 @@ import wtforms.fields
 import wtforms.validators
 
 from jsonschema_wtforms import Form
-from jsonschema_wtforms.field import StringParameters
+from jsonschema_wtforms.field import StringParameters, SimpleColorField
 
 
 def test_unknown_format():
@@ -229,3 +229,17 @@ def test_network_fields(network_form):
     form = Form.from_schema(network_form)
     for field in form._fields.values():
         assert isinstance(field, wtforms.fields.StringField)
+
+
+def test_color_field():
+    field = StringParameters.from_json_field('test', True, {
+            "type": "string",
+            "format": "color"
+        })
+    assert field.get_factory() == SimpleColorField
+    form = wtforms.form.BaseForm({"primary": field()})
+    form.process()
+    assert form._fields['primary']() == (
+        '<input id="primary" name="primary" '
+        'required type="color" value="">'
+    )
