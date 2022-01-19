@@ -3,6 +3,8 @@ import hamcrest
 import wtforms.form
 import wtforms.fields
 import wtforms.validators
+
+from jsonschema_wtforms import Form
 from jsonschema_wtforms.field import StringParameters
 
 
@@ -221,3 +223,9 @@ def test_unhandled_attribute():
         "Unsupported attributes: {'unknown'} for "
         "<class 'jsonschema_wtforms.field.StringParameters'>."
     )
+
+
+def test_network_fields(network_form):
+    form = Form.from_schema(network_form)
+    for field in form._fields.values():
+        assert isinstance(field, wtforms.fields.StringField)

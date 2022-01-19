@@ -18,7 +18,10 @@ string_formats = {
     'ipv4': wtforms.fields.StringField,
     'ipv6': wtforms.fields.StringField,
     'binary': wtforms.fields.FileField,
-    'uri': wtforms.fields.URLField
+    'uri': wtforms.fields.URLField,
+    'ipvanyaddress': wtforms.fields.StringField,
+    'ipvanyinterface': wtforms.fields.StringField,
+    'ipvanynetwork': wtforms.fields.StringField
 }
 
 
@@ -70,6 +73,13 @@ class StringParameters(JSONFieldParameters):
             if format == 'ipv6':
                 validators.append(wtforms.validators.IPAddress(
                     ipv4=False, ipv6=True))
+            if format == 'ipvanyaddress':
+                validators.append(wtforms.validators.IPAddress(
+                    ipv4=True, ipv6=True))
+            if format == 'ipvanyinterface':
+                pass
+            if format == 'ipvanynetwork':
+                pass
             if format == 'binary':
                 if 'contentMediaType' in available:
                     ctype = params['contentMediaType']

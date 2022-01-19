@@ -1,0 +1,26 @@
+{
+    "title": "NetworkForm",
+    "type": "object",
+    "properties": {
+        "any_ip": {
+            "title": "Any Ip",
+            "type": "string",
+            "format": "ipvanyaddress"
+        },
+        "any_ip_interface": {
+            "title": "Any Ip Interface",
+            "type": "string",
+            "format": "ipvanyinterface"
+        },
+        "any_ip_network": {
+            "title": "Any Ip Network",
+            "type": "string",
+            "format": "ipvanynetwork"
+        }
+    },
+    "required": [
+        "any_ip",
+        "any_ip_interface",
+        "any_ip_network"
+    ]
+}
