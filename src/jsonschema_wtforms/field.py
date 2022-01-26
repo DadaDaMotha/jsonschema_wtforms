@@ -26,6 +26,7 @@ string_formats = {
     'ipv6': wtforms.fields.StringField,
     'binary': wtforms.fields.FileField,
     'uri': wtforms.fields.URLField,
+    'url': wtforms.fields.URLField,
     'ipvanyaddress': wtforms.fields.StringField,
     'ipvanyinterface': wtforms.fields.StringField,
     'ipvanynetwork': wtforms.fields.StringField,
